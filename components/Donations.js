@@ -16,18 +16,40 @@ class Donations extends React.Component {
   }
 
   render() {
-    return (
-      <Container>
-        <Cover>
-          <Image source={this.props.image} resizeMode="contain" />
-        </Cover>
-        {this.state.fontLoaded ? (
-          <Caption style={{ fontFamily: "Butler-Light" }}>
+    if (this.state.fontLoaded) {
+      return (
+        <Container>
+          <Cover>
+            <Image source={this.props.image} resizeMode="contain" />
+          </Cover>
+
+          <Caption
+            style={
+              this.props.caption == this.props.selected
+                ? { fontFamily: "Avenir", fontWeight: "bold" }
+                : { fontFamily: "Butler-Light" }
+            }
+          >
             {this.props.caption}
           </Caption>
-        ) : null}
-      </Container>
-    );
+        </Container>
+      );
+    } else {
+      return null;
+    }
+
+    // return (
+    //   <Container>
+    //     <Cover>
+    //       <Image source={this.props.image} resizeMode="contain" />
+    //     </Cover>
+    //     {this.state.fontLoaded ? (
+    //       <Caption style={{ fontFamily: "Butler-Light" }}>
+    //         {this.props.caption}
+    //       </Caption>
+    //     ) : null}
+    //   </Container>
+    // );
   }
 }
 

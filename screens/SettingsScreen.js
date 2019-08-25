@@ -1,25 +1,21 @@
-// import React from 'react';
-// import { ExpoConfigView } from '@expo/samples';
-
-// export default function SettingsScreen() {
-//   /**
-//    * Go ahead and delete ExpoConfigView and replace it with your content;
-//    * we just wanted to give you a quick view of your config.
-//    */
-//   return <ExpoConfigView />;
-// }
-
-// SettingsScreen.navigationOptions = {
-//   title: 'app.json',
-// };
 import React from "react";
 import styled from "styled-components";
-import { Button, TouchableOpacity, View, Switch } from "react-native";
-// import Slider from "react-native-slider";
+import { Button, TouchableOpacity, View, Switch, Image } from "react-native";
+import * as Font from "expo-font";
 export default class SettingsScreen extends React.Component {
   state = {
-    value: false
+    value: false,
+    fontLoaded: false
   };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      "Butler-Light": require("../assets/fonts/Butler_Light.otf")
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+
   toggleSwitch = value => {
     //onValueChange of the switch this function will be called
     this.setState({ value: value });
@@ -31,26 +27,34 @@ export default class SettingsScreen extends React.Component {
     return (
       <Container>
         <TitleBar>
-          <Title>Settings</Title>
+          {this.state.fontLoaded ? (
+            <Title style={{ fontFamily: "Butler-Light" }}>Settings</Title>
+          ) : null}
+          <Image
+            source={require("../assets/icon.png")}
+            style={{ position: "absolute", top: -62, right: -46 }}
+          />
         </TitleBar>
         <NameContainer>
-          <TextName>Name</TextName>
-          <Name>Bbbby with that tool</Name>
-        </NameContainer>
-        <NameContainer>
-          <EmailName>Email</EmailName>
-          <Email>Edward.Izraital@hotmail.com</Email>
-        </NameContainer>
-        <NameContainer>
-          <Password>Password</Password>
-          <PasswordName>***************</PasswordName>
-        </NameContainer>
-        <NameContainer>
-          <MonthlyText>Limit Monthly Transactions</MonthlyText>
-          <View style={{ flex: 1, flexDirection: "row" }}></View>
+          <ViewText style={{ marginTop: 0 }}>
+            <Name>Name</Name>
+            <TextName>Parth Patel</TextName>
+          </ViewText>
+          <ViewText>
+            <Name>Email</Name>
+            <TextName>Edward.Izrai@hotmail.com</TextName>
+          </ViewText>
+          <ViewText>
+            <Name>Password</Name>
+            <TextName>***************</TextName>
+          </ViewText>
+          <ViewText>
+            <Name>Limit Monthly Transactions</Name>
+          </ViewText>
         </NameContainer>
         <AlertsContainer>
-          <AlertName>Email Notifications</AlertName>
+          <TextName style={{ paddingTop: 0 }}>Email Notifications</TextName>
+          <View style={{ flex: 1, flexDirection: "row" }}></View>
 
           <Switch
             style={{ marginRight: 40 }}
@@ -85,37 +89,35 @@ const Container = styled.View`
   margin-left: 40px;
 `;
 const TitleBar = styled.View`
-  margin-top: 90px;
+  margin-top: 100px;
 `;
-const Title = styled.Text``;
+const Title = styled.Text`
+  font-size: 40px;
+`;
 const NameContainer = styled.View`
-  margin-top: 30px;
+  margin-top: 40px;
 `;
-const TextName = styled.Text``;
+const TextName = styled.Text`
+  font-size: 25px;
+  color: #ffd36f;
+  padding-top: 10px;
+`;
 const Name = styled.Text`
-  padding-top: 15px;
+  font-weight: 100;
+  font-family: "Avenir";
 `;
-// const EmailContainer = styled.View``;
-const EmailName = styled.Text``;
-const Email = styled.Text`
-  padding-top: 15px;
-`;
-// const PasswordContainer = styled.View``;
-const Password = styled.Text``;
-const PasswordName = styled.Text`
-  padding-top: 15px;
-`;
-const MonthlyContainer = styled.View``;
-const MonthlyText = styled.Text``;
+
 const AlertsContainer = styled.View`
   margin-top: 30px;
   flex-direction: row;
   justify-content: space-between;
 `;
-const AlertName = styled.Text``;
 const BtnContainer = styled.View``;
 const BtnText = styled.Text`
   color: white;
   font-size: 20px;
   font-weight: bold;
+`;
+const ViewText = styled.View`
+  margin-top: 30px;
 `;

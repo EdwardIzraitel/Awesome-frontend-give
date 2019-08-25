@@ -13,7 +13,14 @@ class HomeScreen extends React.Component {
   };
 
   state = {
-    fontLoaded: false
+    fontLoaded: false,
+    charitySelected: "Sick Kids"
+  };
+
+  onCharitySelect = charity => {
+    this.setState({
+      charitySelected: charity
+    });
   };
 
   async componentDidMount() {
@@ -36,6 +43,7 @@ class HomeScreen extends React.Component {
               Give<Text style={{ color: "#ffd36f", fontSize: 70 }}>.</Text>
             </TitleText>
           ) : null}
+          <Coin source={require("../assets/icon.png")} />
         </TitleBar>
         <Given>
           <Col>
@@ -63,7 +71,14 @@ class HomeScreen extends React.Component {
             >
               Given in Total
             </Text>
-            <Text style={{ marginRight: 40, fontWeight: "bold", fontSize: 40 }}>
+            <Text
+              style={{
+                marginRight: 40,
+                fontWeight: "bold",
+                fontSize: 40,
+                fontFamily: "Avenir"
+              }}
+            >
               $750
             </Text>
           </Col>
@@ -87,7 +102,7 @@ class HomeScreen extends React.Component {
               <DoubleClick
                 key={index}
                 singleTap={() => {
-                  console.log("single tap");
+                  this.onCharitySelect(donation.caption);
                 }}
                 doubleTap={() => {
                   this.props.navigation.push("Charity", {
@@ -95,7 +110,11 @@ class HomeScreen extends React.Component {
                   });
                 }}
               >
-                <Donations image={donation.image} caption={donation.caption} />
+                <Donations
+                  image={donation.image}
+                  caption={donation.caption}
+                  selected={this.state.charitySelected}
+                />
               </DoubleClick>
             ))}
           </ImageContainer>
@@ -106,13 +125,17 @@ class HomeScreen extends React.Component {
 }
 
 export default HomeScreen;
-
+const Coin = styled.Image`
+  position: absolute;
+  top: -52;
+  right: -46;
+`;
 const Container = styled.View`
   flex: 1;
   background-color: #fff;
 `;
 const TitleBar = styled.View`
-  margin-top: 90px;
+  margin-top: 90px
   margin-left: 40px;
 `;
 const TitleText = styled.Text`
