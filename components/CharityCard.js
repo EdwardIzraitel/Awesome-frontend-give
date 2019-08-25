@@ -1,24 +1,51 @@
-import React from "react";
+import React, { Component } from "react";
 import styled from "styled-components";
+import * as Font from "expo-font";
 
-const CharityCard = props => (
-  <AccountCard>
-    <CardNumber>{props.cardNumber}</CardNumber>
-    <CardInfo>
-      <CardholderName>{props.cardholderName}</CardholderName>
-      <CardExp>{props.cardExp}</CardExp>
-    </CardInfo>
-  </AccountCard>
-);
+class CharityCard extends Component {
+  state = {
+    fontLoaded: false
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      "SpaceMono-Regular": require("../assets/fonts/SpaceMono-Regular.ttf")
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+
+  render() {
+    return (
+      <AccountCard>
+        {this.state.fontLoaded ? (
+          <>
+            <CardNumber style={{ fontFamily: "SpaceMono-Regular" }}>
+              {this.props.cardNumber}
+            </CardNumber>
+            <CardInfo>
+              <CardholderName style={{ fontFamily: "SpaceMono-Regular" }}>
+                {this.props.cardholderName}
+              </CardholderName>
+              <CardExp style={{ fontFamily: "SpaceMono-Regular" }}>
+                {this.props.cardExp}
+              </CardExp>
+            </CardInfo>
+          </>
+        ) : null}
+      </AccountCard>
+    );
+  }
+}
 
 export default CharityCard;
 
 const AccountCard = styled.View`
   width: 295px;
   height: 160px;
-  background: #120076;
   border-radius: 30px;
   align-items: center;
+  background: #120076;
   padding-right: 10px;
   margin-left: 40px;
   margin-top: 40px;

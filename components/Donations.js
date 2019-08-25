@@ -1,14 +1,35 @@
 import React from "react";
 import styled from "styled-components";
+import * as Font from "expo-font";
 
-const Donations = props => (
-  <Container>
-    <Cover>
-      <Image source={props.image} resizeMode="contain" />
-    </Cover>
-    <Caption>{props.caption}</Caption>
-  </Container>
-);
+class Donations extends React.Component {
+  state = {
+    fontLoaded: false
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      "Butler-Light": require("../assets/fonts/Butler_Light.otf")
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+
+  render() {
+    return (
+      <Container>
+        <Cover>
+          <Image source={this.props.image} resizeMode="contain" />
+        </Cover>
+        {this.state.fontLoaded ? (
+          <Caption style={{ fontFamily: "Butler-Light" }}>
+            {this.props.caption}
+          </Caption>
+        ) : null}
+      </Container>
+    );
+  }
+}
 
 export default Donations;
 
@@ -24,7 +45,7 @@ const Image = styled.Image`
 `;
 const Caption = styled.Text`
   margin-top: 10px;
-  font-size: 18px;
+  font-size: 22px;
 `;
 
 const Cover = styled.View`

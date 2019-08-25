@@ -52,7 +52,7 @@ export default function SettingsScreen() {
             marginTop: 30
           }}
         >
-          <BtnText>Give More</BtnText>
+          <BtnText>Logout</BtnText>
         </TouchableOpacity>
       </BtnContainer>
     </Container>

@@ -10,6 +10,7 @@ import HomeScreen from "../screens/HomeScreen";
 import ProfileScreen from "../screens/ProfileScreen";
 import SettingsScreen from "../screens/SettingsScreen";
 import CharityScreen from "../screens/CharityScreen";
+import { Ionicons } from "@expo/vector-icons";
 
 const config = Platform.select({
   web: { headerMode: "screen" },
@@ -25,14 +26,21 @@ const HomeStack = createStackNavigator(
 );
 HomeStack.navigationOptions = {
   tabBarLabel: "Home",
+  tabBarOptions: {
+    activeTintColor: "#ffd36f",
+    inactiveTintColor: "#b8bece"
+  },
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={
-        Platform.OS === "ios"
-          ? `ios-information-circle${focused ? "" : "-outline"}`
-          : "md-information-circle"
-      }
+    <Ionicons
+      // focused={focused}
+      name="ios-home"
+      color={focused ? "#ffd36f" : "#b8bece"}
+      size={26}
+      // name={
+      //   Platform.OS === "ios"
+      //     ? `home${focused ? "" : ""}`
+      //     : "md-information-circle"
+      // }
     />
   )
 };
@@ -46,10 +54,16 @@ const ProfileStack = createStackNavigator(
 
 ProfileStack.navigationOptions = {
   tabBarLabel: "Profile",
+  tabBarOptions: {
+    activeTintColor: "#ffd36f",
+    inactiveTintColor: "#b8bece"
+  },
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
-      name={Platform.OS === "ios" ? "ios-link" : "md-link"}
+    <Ionicons
+      size={26}
+      name="ios-person"
+      color={focused ? "#ffd36f" : "#b8bece"}
+      // name={Platform.OS === "ios" ? "ios-link" : "md-link"}
     />
   )
 };
@@ -63,10 +77,15 @@ const SettingsStack = createStackNavigator(
 
 SettingsStack.navigationOptions = {
   tabBarLabel: "Settings",
+  tabBarOptions: {
+    activeTintColor: "#ffd36f",
+    inactiveTintColor: "#b8bece"
+  },
   tabBarIcon: ({ focused }) => (
-    <TabBarIcon
-      focused={focused}
+    <Ionicons
+      size={26}
       name={Platform.OS === "ios" ? "ios-options" : "md-options"}
+      color={focused ? "#ffd36f" : "#b8bece"}
     />
   )
 };

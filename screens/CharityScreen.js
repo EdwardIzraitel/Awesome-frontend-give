@@ -5,10 +5,12 @@ import {
   Dimensions,
   TouchableOpacity,
   ScrollView,
-  SafeAreaView,
-  StatusBar
+  SafeAreaView
+  // StatusBar
 } from "react-native";
-import { Icon } from "expo";
+// import { Icon } from "expo";
+import { Ionicons } from "@expo/vector-icons";
+import * as Font from "expo-font";
 
 const screenWidth = Dimensions.get("window").width;
 class CharityScreen extends React.Component {
@@ -16,19 +18,27 @@ class CharityScreen extends React.Component {
     header: null
   };
 
-  componentDidMount() {
-    StatusBar.setBarStyle("light-content", true);
+  state = {
+    fontLoaded: false
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      "Butler-Light": require("../assets/fonts/Butler_Light.otf")
+    });
+
+    this.setState({ fontLoaded: true });
   }
 
-  componentWillUnMount() {
-    StatusBar.setBarStyle("dark-content", true);
-  }
+  // componentWillUnMount() {
+  //   StatusBar.setBarStyle("dark-content", true);
+  // }
   render() {
     const { navigation } = this.props;
     const charity = navigation.getParam("Charity");
     return (
       <Container>
-        <StatusBar hidden />
+        {/* <StatusBar hidden /> */}
         <SafeAreaView style={{ alignItems: "center" }}>
           <View style={{ width: screenWidth }}>
             <Image source={charity.image} />
@@ -40,20 +50,28 @@ class CharityScreen extends React.Component {
             style={{ position: "absolute", top: 280, right: 170 }}
           >
             <CloseView>
-              {/* <Icon.Ionicons
+              <Ionicons
                 name="ios-close"
                 size={36}
                 color="#FFD36F"
                 style={{ marginTop: 4 }}
-              /> */}
+              />
             </CloseView>
           </TouchableOpacity>
           <ScrollView showsVerticalScrollIndicator={false}>
             <Wrapper>
-              <Text>{charity.charityTitle}</Text>
+              {this.state.fontLoaded ? (
+                <Text style={{ fontFamily: "Butler-Light" }}>
+                  {charity.charityTitle}
+                </Text>
+              ) : null}
 
-              <TextParagraph>{charity.textOne}</TextParagraph>
-              <TextParagraph>{charity.textTwo}</TextParagraph>
+              <TextParagraph style={{ fontFamily: "Avenir" }}>
+                {charity.textOne}
+              </TextParagraph>
+              <TextParagraph style={{ fontFamily: "Avenir" }}>
+                {charity.textTwo}
+              </TextParagraph>
             </Wrapper>
             <TouchableOpacity
               style={{
@@ -63,10 +81,11 @@ class CharityScreen extends React.Component {
                 backgroundColor: "#FFD36F",
                 alignItems: "center",
                 justifyContent: "center",
-                marginTop: 30
+                marginTop: 30,
+                marginBottom: 20
               }}
             >
-              <BtnText>Give More</BtnText>
+              <BtnText style={{ fontFamily: "Avenir" }}>Give More</BtnText>
             </TouchableOpacity>
           </ScrollView>
         </SafeAreaView>

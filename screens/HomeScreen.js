@@ -5,25 +5,46 @@ import { ScrollView } from "react-native";
 import DoubleClick from "react-native-double-tap";
 import { MonoText } from "../components/StyledText";
 import Donations from "../components/Donations";
+import * as Font from "expo-font";
+
 // export default function HomeScreen() {
 class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
   };
 
+  state = {
+    fontLoaded: false
+  };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      "Butler-Light": require("../assets/fonts/Butler_Light.otf")
+    });
+
+    this.setState({ fontLoaded: true });
+  }
+
   render() {
     return (
       <Container>
         <TitleBar>
-          <TitleText style={{ fontWeight: "bold" }}>Give</TitleText>
+          {this.state.fontLoaded ? (
+            <TitleText
+              style={{ fontWeight: "bold", fontFamily: "Butler-Light" }}
+            >
+              Give<Text style={{ color: "#ffd36f", fontSize: 70 }}>.</Text>
+            </TitleText>
+          ) : null}
         </TitleBar>
         <Given>
           <Col>
             <Text
               style={{
                 fontSize: 20,
-                fontWeight: "normal",
-                textAlign: "left"
+                fontWeight: "100",
+                textAlign: "left",
+                fontFamily: "Avenir"
               }}
             >
               Given Today
@@ -34,9 +55,10 @@ class HomeScreen extends React.Component {
             <Text
               style={{
                 fontSize: 20,
-                fontWeight: "normal",
+                fontWeight: "100",
                 textAlign: "right",
-                marginRight: 40
+                marginRight: 40,
+                fontFamily: "Avenir"
               }}
             >
               Given in Total
@@ -46,16 +68,19 @@ class HomeScreen extends React.Component {
             </Text>
           </Col>
         </Given>
-        <Text
-          style={{
-            marginTop: 70,
-            marginLeft: 40,
-            fontSize: 30,
-            fontWeight: "normal"
-          }}
-        >
-          Donate To
-        </Text>
+        {this.state.fontLoaded ? (
+          <Text
+            style={{
+              marginTop: 70,
+              marginLeft: 40,
+              fontSize: 30,
+              fontWeight: "normal",
+              fontFamily: "Butler-Light"
+            }}
+          >
+            Donate To
+          </Text>
+        ) : null}
         <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
           <ImageContainer style={{ marginTop: 40 }}>
             {donations.map((donation, index) => (

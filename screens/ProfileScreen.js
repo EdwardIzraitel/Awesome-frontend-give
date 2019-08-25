@@ -24,13 +24,24 @@ import React from "react";
 import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import styled from "styled-components";
 import CharityCard from "../components/CharityCard";
-import { Icon } from "expo";
+// import { Icon } from "expo";
+import { Ionicons } from "@expo/vector-icons";
+import * as Font from "expo-font";
 
 export default class ProfileScreen extends React.Component {
   state = {
     selected: "Day",
-    moneyGiven: personalGivenData["Day"]
+    moneyGiven: personalGivenData["Day"],
+    fontLoaded: false
   };
+
+  async componentDidMount() {
+    await Font.loadAsync({
+      "Butler-Light": require("../assets/fonts/Butler_Light.otf")
+    });
+
+    this.setState({ fontLoaded: true });
+  }
 
   changeSelected = category => {
     this.setState({
@@ -43,9 +54,11 @@ export default class ProfileScreen extends React.Component {
     return (
       <Container>
         <TitleBar>
-          <NameText>
-            Hello, <Colored>Jacob</Colored>
-          </NameText>
+          {this.state.fontLoaded ? (
+            <NameText style={{ fontFamily: "Butler-Light" }}>
+              Hello, <Colored>Jacob</Colored>
+            </NameText>
+          ) : null}
         </TitleBar>
         <PersonalPayView>
           <Categories>
@@ -99,43 +112,49 @@ export default class ProfileScreen extends React.Component {
 
         <AccountCardsContainer>
           <SectionTitle>
-            <TitleText style={{ textAlign: "left" }}>Your Cards</TitleText>
+            {this.state.fontLoaded ? (
+              <TitleText
+                style={{ textAlign: "left", fontFamily: "Butler-Light" }}
+              >
+                Your Cards
+              </TitleText>
+            ) : null}
             <TouchableOpacity>
-              {/* <Icon.Ionicons
+              <Ionicons
                 name="ios-add-circle-outline"
                 size={35}
                 color="#ffd36f"
                 style={{ paddingLeft: 110 }}
-              /> */}
+              />
             </TouchableOpacity>
           </SectionTitle>
 
           {/* <AccountCards> */}
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {/* <AccountCard>
-                  <CardNumber>****  ****  ****  1369</CardNumber>
-                  <CardInfo>
-                    <CardholderName>Jacob Tremblay</CardholderName>
-                    <CardExp>08/22</CardExp>
-                  </CardInfo>
-                </AccountCard> */}
-
-            {/* <AccountCard>
-                  <CardNumber>****  ****  ****  1369</CardNumber>
-                  <CardInfo>
-                    <CardholderName>Jacob Tremblay</CardholderName>
-                    <CardExp>08/22</CardExp>
-                  </CardInfo>
-                </AccountCard> */}
-
             <CharityCard
               cardholderName="Jacob Tremblay"
-              cardNumber="****  ****  ****  1369"
+              cardNumber="**** **** **** 1369"
               cardExp="08/22"
+              color="#120076"
             />
           </ScrollView>
           {/* </AccountCards> */}
         </AccountCardsContainer>
+
+        <TouchableOpacity
+          style={{
+            width: 295,
+            height: 45,
+            borderRadius: 22,
+            backgroundColor: "#FFD36F",
+            alignItems: "center",
+            justifyContent: "center",
+            marginTop: 60,
+            marginLeft: 40
+          }}
+        >
+          <BtnText>Suggest a Charity</BtnText>
+        </TouchableOpacity>
       </Container>
     );
   }
@@ -178,6 +197,7 @@ const Category = styled.Text`
   font-size: 20px;
   color: black;
   font-weight: 100;
+  font-family: "Avenir";
 `;
 
 const AccountCardsContainer = styled.View``;
@@ -227,11 +247,16 @@ const AccountCards = styled.View`
 //   margin-top: 50px;
 // `
 
+const BtnText = styled.Text`
+  color: white;
+  font-size: 20px;
+  font-weight: bold;
+`;
+
 const TitleText = styled.Text`
   font-size: 30px;
 `;
 
-// --- TEXT ---
 const MoneyGiven = styled.Text`
   margin-top: 10px;
   font-size: 40px;
