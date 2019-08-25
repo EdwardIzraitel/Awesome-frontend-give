@@ -24,7 +24,6 @@ import React from "react";
 import { StyleSheet, View, TouchableOpacity, ScrollView } from "react-native";
 import styled from "styled-components";
 import CharityCard from "../components/CharityCard";
-import { Icon } from "expo";
 
 export default class ProfileScreen extends React.Component {
   state = {
@@ -100,34 +99,9 @@ export default class ProfileScreen extends React.Component {
         <AccountCardsContainer>
           <SectionTitle>
             <TitleText style={{ textAlign: "left" }}>Your Cards</TitleText>
-            <TouchableOpacity>
-              {/* <Icon.Ionicons
-                name="ios-add-circle-outline"
-                size={35}
-                color="#ffd36f"
-                style={{ paddingLeft: 110 }}
-              /> */}
-            </TouchableOpacity>
+            <TouchableOpacity></TouchableOpacity>
           </SectionTitle>
-
-          {/* <AccountCards> */}
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            {/* <AccountCard>
-                  <CardNumber>****  ****  ****  1369</CardNumber>
-                  <CardInfo>
-                    <CardholderName>Jacob Tremblay</CardholderName>
-                    <CardExp>08/22</CardExp>
-                  </CardInfo>
-                </AccountCard> */}
-
-            {/* <AccountCard>
-                  <CardNumber>****  ****  ****  1369</CardNumber>
-                  <CardInfo>
-                    <CardholderName>Jacob Tremblay</CardholderName>
-                    <CardExp>08/22</CardExp>
-                  </CardInfo>
-                </AccountCard> */}
-
             <CharityCard
               cardholderName="Jacob Tremblay"
               cardNumber="****  ****  ****  1369"
@@ -192,40 +166,6 @@ const AccountCards = styled.View`
   margin-left: 40px;
   margin-top: 40px;
 `;
-
-// const AccountCard = styled.View`
-//   width: 295px;
-//   height: 160px;
-//   background: #120076;
-//   border-radius: 30px;
-//   align-items: center;
-//   padding-right: 10px;
-//   margin-left: 40px;
-//   margin-top: 40px;
-// `
-
-// const CardNumber = styled.Text`
-//   color: white;
-//   margin-top: 35px;
-//   font-size: 20px;
-// `
-
-// const CardholderName = styled.Text`
-//   color: white;
-//   font-size: 15px;
-//   margin-right: 10px;
-// `
-
-// const CardExp = styled.Text`
-//   color: white;
-//   font-size: 15px;
-//   margin-left: 10px;
-// `
-
-// const CardInfo = styled.View`
-//   flex-direction: row;
-//   margin-top: 50px;
-// `
 
 const TitleText = styled.Text`
   font-size: 30px;

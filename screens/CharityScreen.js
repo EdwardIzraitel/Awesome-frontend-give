@@ -8,7 +8,6 @@ import {
   SafeAreaView,
   StatusBar
 } from "react-native";
-import { Icon } from "expo";
 
 const screenWidth = Dimensions.get("window").width;
 class CharityScreen extends React.Component {
@@ -37,15 +36,18 @@ class CharityScreen extends React.Component {
             onPress={() => {
               this.props.navigation.goBack();
             }}
-            style={{ position: "absolute", top: 280, right: 170 }}
+            style={{
+              position: "absolute",
+              top: 280,
+              right: 170,
+              zIndex: 100
+            }}
           >
             <CloseView>
-              {/* <Icon.Ionicons
-                name="ios-close"
-                size={36}
-                color="#FFD36F"
-                style={{ marginTop: 4 }}
-              /> */}
+              <Image
+                source={require("../assets/close.png")}
+                style={{ height: 36, width: 36 }}
+              />
             </CloseView>
           </TouchableOpacity>
           <ScrollView showsVerticalScrollIndicator={false}>

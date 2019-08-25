@@ -1,11 +1,9 @@
-import * as WebBrowser from "expo-web-browser";
 import React from "react";
 import styled from "styled-components";
 import { ScrollView } from "react-native";
 import DoubleClick from "react-native-double-tap";
-import { MonoText } from "../components/StyledText";
 import Donations from "../components/Donations";
-// export default function HomeScreen() {
+import Login from "../components/Login";
 class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
@@ -14,6 +12,7 @@ class HomeScreen extends React.Component {
   render() {
     return (
       <Container>
+        {/* <Login /> */}
         <TitleBar>
           <TitleText style={{ fontWeight: "bold" }}>Give</TitleText>
         </TitleBar>
