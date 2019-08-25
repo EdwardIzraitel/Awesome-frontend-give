@@ -26,13 +26,13 @@ export default class Plaid extends Component {
     //   .get("http://10.145.66.239:4000/i/fame")
     //   .then(res => console.log("BITCH LOOK HERE, BITCH", res));
     axios
-      .post("http://100.64.213.183:4000/sendToken", {
+      .post("http://100.64.226.28:4000/sendToken", {
         token: this.state.data.metadata
       })
       .then(response => {
         console.log("HELLO HIIIIIIIII", response.data);
         axios
-          .get("http://100.64.213.183:4000/getUserDonations")
+          .get("http://100.64.226.28:4000/getUserDonations")
           .then(response =>
             console.log("PLEASE WORK AND  DONT MAKE DADDY CRY", response.data)
           );

@@ -25,7 +25,9 @@ export default class Login extends React.Component {
     });
     this.setState({ fontLoaded: true });
   }
-
+  componentWillUnmount() {
+    // Alert.alert("Log in Successful");
+  }
   handleLogin = () => {
     // console.log(this.state.email, this.state.password);
 
