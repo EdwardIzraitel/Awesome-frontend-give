@@ -27,6 +27,7 @@ import CharityCard from "../components/CharityCard";
 // import { Icon } from "expo";
 import { Ionicons } from "@expo/vector-icons";
 import * as Font from "expo-font";
+import Plaid from "../components/Plaid";
 
 export default class ProfileScreen extends React.Component {
   state = {
@@ -119,7 +120,9 @@ export default class ProfileScreen extends React.Component {
                 Your Cards
               </TitleText>
             ) : null}
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.push("Plaid")}
+            >
               <Ionicons
                 name="ios-add-circle-outline"
                 size={35}
@@ -129,12 +132,15 @@ export default class ProfileScreen extends React.Component {
             </TouchableOpacity>
           </SectionTitle>
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
-            <CharityCard
-              cardholderName="Jacob Tremblay"
-              cardNumber="**** **** **** 1369"
-              cardExp="08/22"
-              color="#120076"
-            />
+            {cards.map((card, index) => (
+              <CharityCard
+                cardholderName={card.cardholderName}
+                cardNumber={card.cardNumber}
+                cardExp={card.cardExp}
+                color={card.color}
+                key={index}
+              />
+            ))}
           </ScrollView>
           {/* </AccountCards> */}
         </AccountCardsContainer>
@@ -162,7 +168,6 @@ ProfileScreen.navigationOptions = {
 };
 
 // --- VIEWS ---
-
 const Container = styled.View`
   flex: 1;
   background-color: #fff;
@@ -267,3 +272,30 @@ const personalGivenData = {
   Month: "87",
   "All Time": "157"
 };
+
+const cards = [
+  {
+    cardholderName: "Jacob Tremblay",
+    cardNumber: "**** **** **** 1369",
+    cardExp: "12/22",
+    color: "#120076"
+  },
+  {
+    cardholderName: "Jacob Tremblay",
+    cardNumber: "**** **** **** 0604",
+    cardExp: "11/24",
+    color: "#ffd36f"
+  },
+  {
+    cardholderName: "Jacob Tremblay",
+    cardNumber: "**** **** **** 4557",
+    cardExp: "01/22",
+    color: "#120076"
+  },
+  {
+    cardholderName: "Jacob Tremblay",
+    cardNumber: "**** **** **** 5095",
+    cardExp: "04/25",
+    color: "#ffd36f"
+  }
+];

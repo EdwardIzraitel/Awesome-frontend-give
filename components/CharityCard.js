@@ -17,7 +17,7 @@ class CharityCard extends Component {
 
   render() {
     return (
-      <AccountCard>
+      <AccountCard style={{ backgroundColor: this.props.color }}>
         {this.state.fontLoaded ? (
           <>
             <CardNumber style={{ fontFamily: "SpaceMono-Regular" }}>

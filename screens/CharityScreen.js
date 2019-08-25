@@ -77,6 +77,9 @@ class CharityScreen extends React.Component {
               <TextParagraph style={{ fontFamily: "Avenir" }}>
                 {charity.textTwo}
               </TextParagraph>
+              <TextParagraph style={{ fontFamily: "Avenir" }}>
+                {charity.textThree}
+              </TextParagraph>
             </Wrapper>
             <TouchableOpacity
               style={{

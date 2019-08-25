@@ -2,10 +2,10 @@ import * as firebase from "firebase";
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyAiPksan3FmYjER2q27oy0rf5CMm7P1uDA",
-  authDomain: "give-base.firebaseapp.com",
-  databaseURL: "http://give-base.firebaseio.com",
-  storageBucket: "give-base.appspot.com"
+  apiKey: "AIzaSyDnLJGs1yUbcGOaJ92xLoanFj1y3X6bU9Q",
+  authDomain: "givebasef.firebaseapp.com",
+  databaseURL: "http://givebasef.firebaseio.com",
+  storageBucket: "givebasef.appspot.com"
 };
 
 firebase.initializeApp(firebaseConfig);
