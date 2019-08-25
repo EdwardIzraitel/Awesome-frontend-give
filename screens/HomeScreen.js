@@ -4,9 +4,9 @@ import { ScrollView } from "react-native";
 import DoubleClick from "react-native-double-tap";
 import Donations from "../components/Donations";
 import * as Font from "expo-font";
-
+import LogInScreen from "./LogInScreen";
+import axios from "axios";
 // export default function HomeScreen() {
-import Login from "../components/Login";
 class HomeScreen extends React.Component {
   static navigationOptions = {
     header: null
@@ -28,13 +28,17 @@ class HomeScreen extends React.Component {
       "Butler-Light": require("../assets/fonts/Butler_Light.otf")
     });
 
+    axios
+      .get("http://localhost:4000/i/fame")
+      .then(res => console.log("BITCH LOOK HERE, BITCH", res));
+
     this.setState({ fontLoaded: true });
+    this.props.navigation.push("LogIn");
   }
 
   render() {
     return (
       <Container>
-        {/* <Login /> */}
         <TitleBar>
           {this.state.fontLoaded ? (
             <TitleText
@@ -178,16 +182,34 @@ const donations = [
   {
     image: require("../assets/drink.png"),
     caption: "Pure Water",
-    charityTitle: "Give to Pure Water"
+    charityTitle: "Give to Pure Water",
+    textOne:
+      "WaterAid Canada is pleased to announce that it has been accredited under Imagine Canada's national Standards Program. With this achievement, we join a growing community of more than 230 organizations dedicated to operational excellence.",
+    textTwo:
+      "The Standards Program is a Canada-wide set of shared standards for charities and nonprofits designed to strengthen practices in five fundamental areas: board governance; financial accountability and transparency; fundraising; staff management; and volunteer involvement.",
+    textThree:
+      "Less than 1% of Canada's 80,000+ charities are currently accredited by this rigorous accreditation program – this demonstrates WaterAid Canada's deep commitment to operational excellence and earning the trust of the Canadian public as we seek to advance our vision of a world where everyone everywhere has access to clean water, decent toilets and hygiene."
   },
   {
     image: require("../assets/campfire.png"),
     caption: "Homeless",
-    charityTitle: "Give to the Homeless"
+    charityTitle: "Give to the Homeless",
+    textOne:
+      "The Salvation Army is an international Christian organization that began its work in Canada in 1882 and has grown to become one of the largest non-governmental direct provider of social services in the country. The Salvation Army gives hope and support to vulnerable people today and everyday in 400 communities across Canada and more than 130 countries around the world.",
+    textTwo:
+      "The Salvation Army offers practical assistance for children and families, often tending to the basic necessities of life, provides shelter for homeless people and rehabilitation for people who have lost control of their lives to an addiction.",
+    textThree:
+      "When you give to The Salvation Army, you are investing in the future of marginalized and overlooked people in your community."
   },
   {
     image: require("../assets/dreamer.png"),
     caption: "Enviornment",
-    charityTitle: "Give to the Enviornment"
+    charityTitle: "Give to the Enviornment",
+    textOne:
+      "Recycle Rebuild empowers communities to recycle waste into affordable, high-quality building materials, whilst providing an immediate source of income for those affected by natural disasters.",
+    textTwo:
+      "We are a nonprofit organisation made up of a passionate group of individuals. We are Architects, Designers, Journalists, Photographers and most importantly Humanitarians.",
+    textThree:
+      "We care deeply about the environment and how humanity lives within it. Using the power of design and our ingenuity, we actively look for problems in the waste stream and design solutions that better the community."
   }
 ];

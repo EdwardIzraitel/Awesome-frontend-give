@@ -27,6 +27,7 @@ import CharityCard from "../components/CharityCard";
 // import { Icon } from "expo";
 import { Ionicons } from "@expo/vector-icons";
 import * as Font from "expo-font";
+import Plaid from "../components/Plaid";
 
 export default class ProfileScreen extends React.Component {
   state = {
@@ -119,7 +120,9 @@ export default class ProfileScreen extends React.Component {
                 Your Cards
               </TitleText>
             ) : null}
-            <TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => this.props.navigation.push("Plaid")}
+            >
               <Ionicons
                 name="ios-add-circle-outline"
                 size={35}

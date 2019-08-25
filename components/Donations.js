@@ -37,19 +37,6 @@ class Donations extends React.Component {
     } else {
       return null;
     }
-
-    // return (
-    //   <Container>
-    //     <Cover>
-    //       <Image source={this.props.image} resizeMode="contain" />
-    //     </Cover>
-    //     {this.state.fontLoaded ? (
-    //       <Caption style={{ fontFamily: "Butler-Light" }}>
-    //         {this.props.caption}
-    //       </Caption>
-    //     ) : null}
-    //   </Container>
-    // );
   }
 }
 

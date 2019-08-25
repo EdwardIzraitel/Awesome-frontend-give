@@ -1,11 +1,20 @@
 import React from "react";
 import styled from "styled-components";
-import { Button, TouchableOpacity, View, Switch, Image } from "react-native";
+import {
+  Button,
+  TouchableOpacity,
+  View,
+  Switch,
+  Image,
+  Slider,
+  Text
+} from "react-native";
 import * as Font from "expo-font";
 export default class SettingsScreen extends React.Component {
   state = {
     value: false,
-    fontLoaded: false
+    fontLoaded: false,
+    slideValue: 0
   };
 
   async componentDidMount() {
@@ -49,7 +58,21 @@ export default class SettingsScreen extends React.Component {
             <TextName>***************</TextName>
           </ViewText>
           <ViewText>
-            <Name>Limit Monthly Transactions</Name>
+            <Align>
+              <Name>Limit Monthly Transactions</Name>
+              <Text style={{ marginRight: 40, color: "#ffd36f", fontSize: 18 }}>
+                {this.state.slideValue}
+              </Text>
+            </Align>
+            <Slider
+              style={{ width: "85%" }}
+              value={this.state.slideValue}
+              step={1}
+              maximumValue={100}
+              thumbTintColor="#ffd36f"
+              minimumTrackTintColor="#ffd36f"
+              onValueChange={slideValue => this.setState({ slideValue })}
+            />
           </ViewText>
         </NameContainer>
         <AlertsContainer>
@@ -60,6 +83,8 @@ export default class SettingsScreen extends React.Component {
             style={{ marginRight: 40 }}
             onValueChange={this.toggleSwitch}
             value={this.state.value}
+            // thumbColor="#ffd36f"
+            trackColor={{ true: "#ffd36f" }}
           />
         </AlertsContainer>
         <BtnContainer>
@@ -73,6 +98,7 @@ export default class SettingsScreen extends React.Component {
               justifyContent: "center",
               marginTop: 30
             }}
+            onPress={() => this.props.navigation.push("LogIn")}
           >
             <BtnText>Log Out</BtnText>
           </TouchableOpacity>
@@ -120,4 +146,8 @@ const BtnText = styled.Text`
 `;
 const ViewText = styled.View`
   margin-top: 30px;
+`;
+const Align = styled.View`
+  justify-content: space-between;
+  flex-direction: row;
 `;
