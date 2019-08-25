@@ -128,8 +128,6 @@ export default class ProfileScreen extends React.Component {
               />
             </TouchableOpacity>
           </SectionTitle>
-
-          {/* <AccountCards> */}
           <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
             <CharityCard
               cardholderName="Jacob Tremblay"

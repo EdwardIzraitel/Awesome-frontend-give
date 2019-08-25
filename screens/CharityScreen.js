@@ -47,7 +47,12 @@ class CharityScreen extends React.Component {
             onPress={() => {
               this.props.navigation.goBack();
             }}
-            style={{ position: "absolute", top: 280, right: 170 }}
+            style={{
+              position: "absolute",
+              top: 280,
+              right: 170,
+              zIndex: 100
+            }}
           >
             <CloseView>
               <Ionicons
