@@ -28,7 +28,7 @@ const HomeStack = createStackNavigator(
       screen: CharityScreen
     },
     LogIn: {
-      screen: LogInScreen
+      screen: LogInScreen,
       navigationOptions: {
         gesturesEnabled: false
       }
