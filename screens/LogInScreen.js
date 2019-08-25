@@ -49,7 +49,7 @@ export default class Login extends React.Component {
           if (response) {
             this.setState({ isSuccessful: true });
 
-            Alert.alert("Congrats", "You've logged successfully!");
+            //Alert.alert("Congrats", "You've logged successfully!");
 
             setTimeout(() => {
               this.setState({ isSuccessful: false });
